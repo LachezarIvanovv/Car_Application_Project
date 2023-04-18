@@ -9,5 +9,5 @@ import softuni.Mobilele.model.entity.UserEntity;
 public interface UserMapper {
 
     @Mapping(target = "active", constant = "true")
-    UserEntity  userDTOToUserEntity(UserRegisterDTO registerDTO);
+    UserEntity userDTOToUserEntity(UserRegisterDTO registerDTO);
 }

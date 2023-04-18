@@ -1,5 +1,6 @@
 package softuni.Mobilele.model.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.Mobilele.model.dto.AddOfferDTO;
 import softuni.Mobilele.model.dto.BrandDTO;
@@ -22,6 +23,7 @@ public class OfferService {
     private final ModelRepository modelRepository;
     private final CurrentUser currentUser;
     private final OfferMapper offerMapper;
+
 
     public OfferService(OfferRepository offerRepository,
                         UserRepository userRepository,
