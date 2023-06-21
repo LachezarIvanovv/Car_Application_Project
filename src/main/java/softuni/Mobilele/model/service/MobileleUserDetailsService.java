@@ -28,7 +28,8 @@ public class MobileleUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails map(UserEntity userEntity) {
-        return new MobileleUserDetails(userEntity.getPassword(),
+        return new MobileleUserDetails(
+                userEntity.getPassword(),
                 userEntity.getEmail(),
                 userEntity.getFirstName(),
                 userEntity.getLastName(),

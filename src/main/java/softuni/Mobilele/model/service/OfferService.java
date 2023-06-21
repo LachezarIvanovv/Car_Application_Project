@@ -1,9 +1,11 @@
 package softuni.Mobilele.model.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import softuni.Mobilele.model.dto.AddOfferDTO;
 import softuni.Mobilele.model.entity.ModelEntity;
 import softuni.Mobilele.model.entity.OfferEntity;
+import softuni.Mobilele.model.entity.UserEntity;
 import softuni.Mobilele.model.mapper.OfferMapper;
 import softuni.Mobilele.repository.ModelRepository;
 import softuni.Mobilele.repository.OfferRepository;
@@ -28,19 +30,19 @@ public class OfferService {
         this.offerMapper = offerMapper;
     }
 
-    public void addOffer(AddOfferDTO addOfferDTO){
+    public void addOffer(AddOfferDTO addOfferDTO, UserDetails userDetails){
         OfferEntity newOffer = offerMapper.addOfferDtoToOfferEntity(addOfferDTO);
 
-//        UserEntity seller = userRepository
-//                .findByEmail(currentUser.getEmail())
-//                .orElseThrow();
+        UserEntity seller = userRepository
+                .findByEmail(userDetails.getUsername())
+                .orElseThrow();
 
         ModelEntity model = modelRepository
                 .findById(addOfferDTO.getModelId())
                 .orElseThrow();
 
         newOffer.setModel(model);
-//        newOffer.setSeller(seller);
+        newOffer.setSeller(seller);
 
         offerRepository.save(newOffer);
     }

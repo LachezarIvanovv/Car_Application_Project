@@ -34,6 +34,11 @@ public class AddOfferDTO {
     @NotNull
     private TransmissionEnum transmission;
 
+    @Positive
+    @NotNull
+    private Integer mileage;
+
+
     public Long getModelId() {
         return modelId;
     }
@@ -94,6 +99,15 @@ public class AddOfferDTO {
 
     public AddOfferDTO setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
+        return this;
+    }
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public AddOfferDTO setMileage(Integer mileage) {
+        this.mileage = mileage;
         return this;
     }
 }

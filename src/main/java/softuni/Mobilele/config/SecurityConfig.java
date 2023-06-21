@@ -36,11 +36,12 @@ public class SecurityConfig {
                 // everyone can download static resources (css, js, images)
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // everyone can log in and register
-                        requestMatchers("/", "/users/login", "/users/register").permitAll().
+                        requestMatchers("/", "/users/login", "/users/register", "/offers/all",
+                        "/search").permitAll().
                 // pages available only for moderators
-                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
+//                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
                 // pages available only for admins
-                        requestMatchers("/pages/admins").hasRole(UserRoleEnum.ADMIN.name()).
+//                        requestMatchers("/pages/admins").hasRole(UserRoleEnum.ADMIN.name()).
                 // all other pages are available for logger in users
                         anyRequest().
                 authenticated().

@@ -24,7 +24,6 @@
         <span
                 sec:authorize="isAuthenticated()"
                 th:text="${#authentication.principal.fullName}">
-            TODO(First name, Last name)
         </span>
         <span
                 sec:authorize="!isAuthenticated()">
