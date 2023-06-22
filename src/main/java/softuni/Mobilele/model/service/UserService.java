@@ -44,7 +44,7 @@ public class UserService {
 
     private void login(UserEntity userEntity){
         UserDetails userDetails =
-                userDetailsService.loadUserByUsername(String.valueOf(userEntity));
+                userDetailsService.loadUserByUsername(userEntity.getEmail());
 
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(

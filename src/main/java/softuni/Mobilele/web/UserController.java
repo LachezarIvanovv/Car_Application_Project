@@ -12,11 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/")
 public class UserController {
 
-    @GetMapping("/")
-    public String homePage(){
-        return "/";
-    }
-
 
     @GetMapping("/users/login")
     public String login(){
