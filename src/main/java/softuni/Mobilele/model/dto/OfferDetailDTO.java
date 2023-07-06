@@ -23,7 +23,8 @@ public class OfferDetailDTO {
 
     private TransmissionEnum transmission;
 
-    public OfferDetailDTO(){}
+    public OfferDetailDTO() {
+    }
 
     public String getImageUrl() {
         return imageUrl;
