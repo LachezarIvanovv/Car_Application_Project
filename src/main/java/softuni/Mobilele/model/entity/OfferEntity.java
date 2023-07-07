@@ -6,21 +6,22 @@ import softuni.Mobilele.model.enums.EngineEnum;
 import softuni.Mobilele.model.enums.TransmissionEnum;
 
 import java.math.BigDecimal;
+import java.sql.Types;
 import java.util.UUID;
 
 @Entity
 @Table(name = "offers")
-public class OfferEntity {
+public class OfferEntity extends BaseEntity{
 
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+//    @Id
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
 //    @Type(type = "org.hibernate.id.UUIDGenerator")
-    @Column(columnDefinition = "VARCHAR")
-    private UUID id;
+//    @Column(columnDefinition = "VARCHAR")
+//    private UUID id;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -48,14 +49,6 @@ public class OfferEntity {
     @ManyToOne
     private UserEntity seller;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public OfferEntity setId(UUID id) {
-        this.id = id;
-        return this;
-    }
 
     public EngineEnum getEngine() {
         return engine;
@@ -132,7 +125,7 @@ public class OfferEntity {
     @Override
     public String toString() {
         return "OfferEntity{" +
-                "id=" + id +
+//                "id=" + id +
                 ", engine=" + engine +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", mileage=" + mileage +

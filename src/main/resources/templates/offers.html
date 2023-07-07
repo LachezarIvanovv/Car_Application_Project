@@ -63,7 +63,7 @@
                     <a th:if="${offers.hasPrevious()}"
                        th:href="@{/offers/all(size=${offers.getSize()}, page=${offers.getNumber() - 1})}"
                        class="page-link" href="#">Previous</a>
-                    <a th:unless="${offers.hasPrevious()()}"
+                    <a th:unless="${offers.hasPrevious()}"
                        class="page-link" href="#">Previous</a>
                 </li>
             </ul>
