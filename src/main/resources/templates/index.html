@@ -22,12 +22,13 @@
     <h5 class="text-center text-white mt-5">
         Welcome to MobiLeLeLe,
         <span
-                sec:authorize="isAuthenticated()">
-<!--                th:text="${#authentication.principal.fullName}">-->
+                sec:authorize="isAuthenticated()">X
+<!--                th:text="${#authentication.principal.fullName}"-->
+
         </span>
-        <span
-                sec:authorize="!isAuthenticated()">
-                Anonymous
+
+        <span sec:authorize="!isAuthenticated()">
+            Anonymous
         </span>
 
     </h5>

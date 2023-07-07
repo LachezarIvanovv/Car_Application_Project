@@ -19,19 +19,20 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final UserDetailsService userDetailsService;
-    private final EmailService emailService;
+//    private final EmailService emailService;
 
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService,
-                       EmailService emailService){
+                       UserDetailsService userDetailsService
+//                       EmailService emailService
+    ){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
         this.userDetailsService = userDetailsService;
-        this.emailService = emailService;
+//        this.emailService = emailService;
     }
 
     public void registerAndLogin(UserRegisterDTO userRegisterDTO){
@@ -39,16 +40,16 @@ public class UserService {
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         this.userRepository.save(newUser);
-        login(newUser);
+        login(newUser.getEmail());
 
-        emailService.sendRegistrationEmail(newUser.getEmail(),
-                newUser.getFirstName() + " " + newUser.getLastName());
+//        emailService.sendRegistrationEmail(newUser.getEmail(),
+//                newUser.getFirstName() + " " + newUser.getLastName());
     }
 
 
-    private void login(UserEntity userEntity){
+    private void login(String userName){
         UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userEntity.getEmail());
+                userDetailsService.loadUserByUsername(userName);
 
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(

@@ -1,4 +1,4 @@
-﻿package softuni.Mobilele.scheduler;
+package softuni.Mobilele.scheduler;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
