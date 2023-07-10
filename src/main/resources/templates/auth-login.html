@@ -20,7 +20,6 @@
     <form
             th:action="@{/users/login}"
             th:method="post"
-            th:object="${userModel}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="form-group">
             <label for="username" class="text-white font-weight-bold">Username</label>
@@ -46,10 +45,10 @@
                    placeholder="Password"/>
 
         </div>
-        
-<!--        <p class="errors alert alert-danger">-->
-<!--            Invalid username or password.-->
-<!--        </p>-->
+
+        <p th:if="${bad_credentials}" class="errors alert alert-danger">
+            Invalid username or password.
+        </p>
 
         <div class="row">
             <div class="col col-md-4">
