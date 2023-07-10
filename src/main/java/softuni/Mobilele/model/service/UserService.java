@@ -12,6 +12,8 @@ import softuni.Mobilele.model.entity.UserEntity;
 import softuni.Mobilele.model.mapper.UserMapper;
 import softuni.Mobilele.repository.UserRepository;
 
+import java.util.Locale;
+
 @Service
 public class UserService {
 
@@ -19,31 +21,33 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final UserDetailsService userDetailsService;
-//    private final EmailService emailService;
+    private final EmailService emailService;
 
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService
-//                       EmailService emailService
+                       UserDetailsService userDetailsService,
+                       EmailService emailService
     ){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
         this.userDetailsService = userDetailsService;
-//        this.emailService = emailService;
+        this.emailService = emailService;
     }
 
-    public void registerAndLogin(UserRegisterDTO userRegisterDTO){
+    public void registerAndLogin(UserRegisterDTO userRegisterDTO,
+                                 Locale preferredLocale) {
         UserEntity newUser = userMapper.userDTOToUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         this.userRepository.save(newUser);
         login(newUser.getEmail());
 
-//        emailService.sendRegistrationEmail(newUser.getEmail(),
-//                newUser.getFirstName() + " " + newUser.getLastName());
+        emailService.sendRegistrationEmail(newUser.getEmail(),
+                newUser.getFirstName() + " " + newUser.getLastName(),
+                preferredLocale);
     }
 
 

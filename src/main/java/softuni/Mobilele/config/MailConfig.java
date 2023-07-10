@@ -25,6 +25,7 @@ public class MailConfig {
         javamailSenderImpl.setUsername(mailUsername);
         javamailSenderImpl.setPassword(mailPassword);
         javamailSenderImpl.setJavaMailProperties(mailProperties());
+        javamailSenderImpl.setDefaultEncoding("UTF-8");
 
         return javamailSenderImpl;
     }
