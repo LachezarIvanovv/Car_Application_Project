@@ -62,7 +62,7 @@ public class OfferService {
         return this.offerRepository
                 .findAllByModelNameContains(query)
                 .stream()
-                .map(offer -> offerMapper.offerEntityToCardListingOfferDto(offer))
+                .map(offer -> offerMapper.offerEntityToCardListingOfferDto((OfferEntity) offer))
                 .toList();
     }
 

@@ -1,6 +1,7 @@
 package softuni.Mobilele.model.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import softuni.Mobilele.model.dto.AddOfferDTO;
 import softuni.Mobilele.model.dto.OfferDetailDTO;
 import softuni.Mobilele.model.entity.OfferEntity;
@@ -11,5 +12,7 @@ public interface OfferMapper {
 
     OfferEntity addOfferDtoToOfferEntity(AddOfferDTO addOfferDTO);
 
-    OfferDetailDTO offerEntityToCardListingOfferDto(Object offer);
+    @Mapping(source = "model.name", target = "model")
+    @Mapping(source = "model.brand.name", target = "brand")
+    OfferDetailDTO offerEntityToCardListingOfferDto(OfferEntity offer);
 }

@@ -36,7 +36,7 @@ public class SecurityConfig {
                 // everyone can download static resources (css, js, images)
                     requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // everyone can log in and register
-                    requestMatchers("/", "/users/login", "/users/register", "/offers/all",
+                    requestMatchers("/", "/users/login", "/users/register", "/offers/**",
                         "/search").permitAll().
                 // pages available only for moderators
                     requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).

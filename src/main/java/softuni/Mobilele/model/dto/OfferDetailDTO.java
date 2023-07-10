@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 
 public class OfferDetailDTO {
 
+    private Long id;
+
     private String imageUrl;
 
     private Integer year;
@@ -24,6 +26,15 @@ public class OfferDetailDTO {
     private TransmissionEnum transmission;
 
     public OfferDetailDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferDetailDTO setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getImageUrl() {
@@ -96,5 +107,9 @@ public class OfferDetailDTO {
     public OfferDetailDTO setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
+    }
+
+    public String getOfferHighlight(){
+        return this.year + " " + this.brand + " " + this.model;
     }
 }
