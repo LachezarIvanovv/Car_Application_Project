@@ -2,6 +2,7 @@ package softuni.Mobilele.web;
 
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,8 @@ public class OfferController {
     public String allOffers(
             Model model,
             @PageableDefault(
+                    sort = "price",
+                    direction = Sort.Direction.ASC,
                     page = 0,
                     size = 5) Pageable pageable){
         model.addAttribute("offers", offerService.getAllOffers(pageable));
