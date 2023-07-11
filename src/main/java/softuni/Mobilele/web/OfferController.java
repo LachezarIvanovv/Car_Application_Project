@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.Mobilele.model.dto.AddOfferDTO;
@@ -67,5 +68,10 @@ public class OfferController {
 
         offerService.addOffer(addOfferModel, userDetails);
         return "redirect:/offers/all";
+    }
+
+    @GetMapping("/offers/{if}/details")
+    public String getOfferDetail(@PathVariable("id") Long id){
+        return "details";
     }
 }
