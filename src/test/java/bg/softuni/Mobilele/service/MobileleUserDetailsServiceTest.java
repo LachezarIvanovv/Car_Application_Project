@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import softuni.Mobilele.model.entity.UserEntity;
 import softuni.Mobilele.model.entity.UserRoleEntity;
 import softuni.Mobilele.model.enums.UserRoleEnum;
@@ -29,9 +30,7 @@ public class MobileleUserDetailsServiceTest {
 
     @BeforeEach
     void setUp(){
-        toTest = new MobileleUserDetailsService(
-                mockUserRepo
-        );
+        toTest = new MobileleUserDetailsService(mockUserRepo);
     }
 
     @Test
@@ -81,6 +80,15 @@ public class MobileleUserDetailsServiceTest {
 
     @Test
     void testLoadUserByUsername_UserDoesNotExists(){
+
+        //Arrange
+        //NOTE: No need to arrange anything, mocks return empty optionals
+
+        //Act & Assert
+        Assertions.assertThrows(
+                UsernameNotFoundException.class,
+                () -> toTest.loadUserByUsername("non-existing@example.com")
+        );
 
     }
 }
