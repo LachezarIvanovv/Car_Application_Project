@@ -13,7 +13,7 @@
 
 <body>
 
-<div th:replace="fragments/navbar">Navbar</div>
+<div th:replace="~{fragments/navbar}">Navbar</div>
 <div class="container">
   <h2 class="text-center text-white">Search for offers</h2>
   <form
@@ -87,7 +87,7 @@
       <a class="card-link" href="/">Details</a>
     </div>
   </div>
-  <h3 th:if="${offers != null && offers.size == 0}" class="text-info">There are no offers with this model yet</h3>
+  <h3 th:if="${offers != null && offers.size() == 0}" class="text-info">There are no offers with this model yet</h3>
 </div>
 
 <div>

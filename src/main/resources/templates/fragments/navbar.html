@@ -25,7 +25,7 @@
                 <li class="nav-link">
                     <a class="nav-link"
                        th:text="#{navbar_search}"
-                       href="/offers/search/">Search</a>
+                       href="/offers/search">Search</a>
                 </li>
 
                 <li class="nav-item">
@@ -59,8 +59,8 @@
                     <div class="form-inline my-2 my-lg-0 px-3">
                         <div class="text-white" >Welcome,
                             <th:block
-                                    sec:authentication="name">X
-                                <!-- th:text="${#authentication.principal.fullName}">-->
+                                    sec:authentication="name"
+                                 th:text="${#authentication.principal.fullName}">X
                             </th:block>!
                         </div>
                         <form th:action="@{/users/logout}" th:method="post">

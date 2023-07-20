@@ -6,7 +6,8 @@ values
 
 INSERT INTO users (id, email, first_name, last_name, image_url, is_active, password)
 VALUES
-    (1, 'lachezar.x@gmail.com', 'Lachezar', 'Ivanov', null, 1, '$2a$11$K6/6xbIqmoBkavzyiBdQEuI.S9e88sYrCAfBHPmqNJGb4wryHMV06');
+    (1, 'lachezar.x@gmail.com', 'Lachezar', 'Ivanov', null, 1, '$2a$11$K6/6xbIqmoBkavzyiBdQEuI.S9e88sYrCAfBHPmqNJGb4wryHMV06'),
+    (2, 'l@gmail.com', 'Lachezar', 'Ivanov', null, 1, '{bcrypt}$2a$10$Y98X4IKxeKeCzJIUeuegpu5Tr3i5VXOxWJbPh7J4djBwpkkCTKR4e');
 
 INSERT INTO brands (id, name)
 VALUES

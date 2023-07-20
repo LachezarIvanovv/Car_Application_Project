@@ -8,6 +8,9 @@ public class SearchOfferDTO {
 
     private Integer maxPrice;
 
+    public SearchOfferDTO() {
+    }
+
     public String getModel() {
         return model;
     }

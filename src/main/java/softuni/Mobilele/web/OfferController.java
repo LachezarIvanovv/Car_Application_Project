@@ -71,15 +71,14 @@ public class OfferController {
         return "redirect:/offers/all";
     }
 
-    @GetMapping("/offer/search")
+    @GetMapping("/offers/search")
     public String searchQuery(@Valid SearchOfferDTO searchOfferDTO,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes,
                               Model model){
 
         if(bindingResult.hasErrors()){
-            redirectAttributes.addAttribute("searchOfferModel", searchOfferDTO);
-            redirectAttributes.addAttribute("org.springframework.validation.BindingResult.searchOfferModel",
+            model.addAttribute("searchOfferModel", searchOfferDTO);
+            model.addAttribute("org.springframework.validation.BindingResult.searchOfferModel",
                     bindingResult);
 
             return "offer-search";

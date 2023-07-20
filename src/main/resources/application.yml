@@ -28,6 +28,6 @@ spring:
 
 mail:
   host: "localhost"
-  port: 8000
+  port: 1025
   username: "mobilele@mobilele.com"
-  password: ""
+  password: "topsecret"
