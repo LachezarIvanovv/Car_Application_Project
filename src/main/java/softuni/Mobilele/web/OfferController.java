@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.Mobilele.model.dto.AddOfferDTO;
+import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.service.BrandService;
 import softuni.Mobilele.model.service.OfferService;
 
@@ -62,13 +63,40 @@ public class OfferController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferModel",
                     bindingResult);
 
-            return "redirect:/offers/add";
+            return "redirect:/offer/add";
         }
 
 
         offerService.addOffer(addOfferModel, userDetails);
         return "redirect:/offers/all";
     }
+
+    @GetMapping("/offer/search")
+    public String searchQuery(@Valid SearchOfferDTO searchOfferDTO,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes,
+                              Model model){
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addAttribute("searchOfferModel", searchOfferDTO);
+            redirectAttributes.addAttribute("org.springframework.validation.BindingResult.searchOfferModel",
+                    bindingResult);
+
+            return "offer-search";
+        }
+
+        if(!model.containsAttribute("searchOfferModel")){
+            model.addAttribute("searchOfferModel", searchOfferDTO);
+        }
+
+        if (!searchOfferDTO.isEmpty()) {
+            model.addAttribute("offers", offerService.searchOffer(searchOfferDTO));
+        }
+
+        return "offer-search";
+    }
+
+
 
     @GetMapping("/offers/{if}/details")
     public String getOfferDetail(@PathVariable("id") Long id){

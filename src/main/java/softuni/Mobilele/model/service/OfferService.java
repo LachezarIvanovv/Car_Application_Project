@@ -6,12 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import softuni.Mobilele.model.dto.AddOfferDTO;
 import softuni.Mobilele.model.dto.OfferDetailDTO;
+import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.entity.ModelEntity;
 import softuni.Mobilele.model.entity.OfferEntity;
 import softuni.Mobilele.model.entity.UserEntity;
 import softuni.Mobilele.model.mapper.OfferMapper;
 import softuni.Mobilele.repository.ModelRepository;
 import softuni.Mobilele.repository.OfferRepository;
+import softuni.Mobilele.repository.OfferSpecification;
 import softuni.Mobilele.repository.UserRepository;
 
 import java.util.List;
@@ -58,12 +60,10 @@ public class OfferService {
                 .map(offerMapper::offerEntityToCardListingOfferDto);
     }
 
-    public List<OfferDetailDTO> findOfferByOfferName(String query){
-        return this.offerRepository
-                .findAllByModelNameContains(query)
+    public List<OfferDetailDTO> searchOffer(SearchOfferDTO searchOfferDTO){
+        return this.offerRepository.findAll(new OfferSpecification(searchOfferDTO))
                 .stream()
                 .map(offer -> offerMapper.offerEntityToCardListingOfferDto((OfferEntity) offer))
                 .toList();
     }
-
 }
