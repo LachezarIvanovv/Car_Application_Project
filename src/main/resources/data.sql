@@ -6,8 +6,15 @@ values
 
 INSERT INTO users (id, email, first_name, last_name, image_url, is_active, password)
 VALUES
-    (1, 'lachezar.x@gmail.com', 'Lachezar', 'Ivanov', null, 1, '$2a$11$K6/6xbIqmoBkavzyiBdQEuI.S9e88sYrCAfBHPmqNJGb4wryHMV06'),
+    (1, 'admin@example.com', 'Admin', 'Adminov', null, 1, '{bcrypt}$2a$10$Y98X4IKxeKeCzJIUeuegpu5Tr3i5VXOxWJbPh7J4djBwpkkCTKR4e'),
     (2, 'l@gmail.com', 'Lachezar', 'Ivanov', null, 1, '{bcrypt}$2a$10$Y98X4IKxeKeCzJIUeuegpu5Tr3i5VXOxWJbPh7J4djBwpkkCTKR4e');
+-- $2a$11$K6/6xbIqmoBkavzyiBdQEuI.S9e88sYrCAfBHPmqNJGb4wryHMV06
+
+INSERT INTO users_user_roles(user_entity_id, user_roles_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (2, 2);
 
 INSERT INTO brands (id, name)
 VALUES

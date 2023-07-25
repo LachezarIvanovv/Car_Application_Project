@@ -10,6 +10,7 @@ import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.entity.ModelEntity;
 import softuni.Mobilele.model.entity.OfferEntity;
 import softuni.Mobilele.model.entity.UserEntity;
+import softuni.Mobilele.model.enums.UserRoleEnum;
 import softuni.Mobilele.model.mapper.OfferMapper;
 import softuni.Mobilele.repository.ModelRepository;
 import softuni.Mobilele.repository.OfferRepository;
@@ -37,6 +38,26 @@ public class OfferService {
         this.userRepository = userRepository;
         this.modelRepository = modelRepository;
         this.offerMapper = offerMapper;
+    }
+
+    public boolean isOwner(String userName, Long offerId){
+        boolean isOwner = offerRepository.findById(offerId)
+                .filter(offer -> offer.getSeller().getEmail().equals(userName))
+                .isPresent();
+
+        if(isOwner){
+            return true;
+        }
+
+        return userRepository.findByEmail(userName)
+                .map(this::isAdmin)
+                .isPresent();
+    }
+
+    private boolean isAdmin(UserEntity user){
+        return user.getUserRoles()
+                .stream()
+                .anyMatch(r -> r.getUserRole() == UserRoleEnum.ADMIN);
     }
 
     public void deleteOfferById(Long offerId){

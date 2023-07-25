@@ -3,12 +3,13 @@ package softuni.Mobilele.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import softuni.Mobilele.model.enums.UserRoleEnum;
@@ -16,6 +17,7 @@ import softuni.Mobilele.model.service.MobileleUserDetailsService;
 import softuni.Mobilele.repository.UserRepository;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     //Here we have to expose 3 things:
@@ -41,7 +43,7 @@ public class SecurityConfig {
                         requestMatchers("/", "/users/login", "/users/register", "/offers/**",
                         "/search").permitAll().
                 // pages available only for moderators
-                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
+//                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
                 // pages available only for admins
                         requestMatchers("/pages/admins").hasRole(UserRoleEnum.ADMIN.name()).
                 // all other pages are available for logger in users
