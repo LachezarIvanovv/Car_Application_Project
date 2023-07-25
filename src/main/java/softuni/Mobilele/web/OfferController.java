@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import softuni.Mobilele.exception.ObjectNotFoundException;
 import softuni.Mobilele.model.dto.AddOfferDTO;
 import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.service.BrandService;
@@ -97,8 +98,14 @@ public class OfferController {
 
 
 
-    @GetMapping("/offers/{if}/details")
-    public String getOfferDetail(@PathVariable("id") Long id){
+    @GetMapping("/offers/{id}/details")
+    public String getOfferDetail(@PathVariable("id") Long id,
+                                 Model model){
+
+        var offerDto = offerService.findOfferById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Offer with id" + id + " not found"));
+
+        model.addAttribute("offer", offerDto);
         return "details";
     }
 }

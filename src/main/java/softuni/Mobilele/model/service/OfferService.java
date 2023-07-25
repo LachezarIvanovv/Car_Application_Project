@@ -17,6 +17,7 @@ import softuni.Mobilele.repository.OfferSpecification;
 import softuni.Mobilele.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -57,13 +58,18 @@ public class OfferService {
 
     public Page<OfferDetailDTO> getAllOffers(Pageable pageable){
         return offerRepository.findAll(pageable)
-                .map(offerMapper::offerEntityToCardListingOfferDto);
+                .map(offerMapper::offerEntityToOfferDetailDto);
+    }
+
+    public Optional<OfferDetailDTO> findOfferById(Long offerId){
+        return offerRepository.findById(offerId)
+                .map(offerMapper::offerEntityToOfferDetailDto);
     }
 
     public List<OfferDetailDTO> searchOffer(SearchOfferDTO searchOfferDTO){
         return this.offerRepository.findAll(new OfferSpecification(searchOfferDTO))
                 .stream()
-                .map(offer -> offerMapper.offerEntityToCardListingOfferDto((OfferEntity) offer))
+                .map(offer -> offerMapper.offerEntityToOfferDetailDto((OfferEntity) offer))
                 .toList();
     }
 }

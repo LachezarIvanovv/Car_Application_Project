@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface OfferRepository extends JpaRepository<OfferEntity, Long>, JpaSpecificationExecutor<OfferEntity> {
+public interface OfferRepository extends JpaRepository<OfferEntity, Long>,
+        JpaSpecificationExecutor<OfferEntity> {
 
 }

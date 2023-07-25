@@ -25,6 +25,10 @@ public class OfferDetailDTO {
 
     private TransmissionEnum transmission;
 
+    private String sellerFirstName;
+
+    private String sellerLastName;
+
     public OfferDetailDTO() {
     }
 
@@ -111,5 +115,27 @@ public class OfferDetailDTO {
 
     public String getOfferHighlight(){
         return this.year + " " + this.brand + " " + this.model;
+    }
+
+    public String getSellerFirstName() {
+        return sellerFirstName;
+    }
+
+    public OfferDetailDTO setSellerFirstName(String sellerFirstName) {
+        this.sellerFirstName = sellerFirstName;
+        return this;
+    }
+
+    public String getSellerLastName() {
+        return sellerLastName;
+    }
+
+    public OfferDetailDTO setSellerLastName(String sellerLastName) {
+        this.sellerLastName = sellerLastName;
+        return this;
+    }
+
+    public String getSellerFullName(){
+        return sellerFirstName + " " + sellerLastName;
     }
 }
