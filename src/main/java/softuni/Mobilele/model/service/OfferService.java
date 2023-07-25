@@ -39,6 +39,10 @@ public class OfferService {
         this.offerMapper = offerMapper;
     }
 
+    public void deleteOfferById(Long offerId){
+        offerRepository.deleteById(offerId);
+    }
+
     public void addOffer(AddOfferDTO addOfferDTO, UserDetails userDetails){
         OfferEntity newOffer = offerMapper.addOfferDtoToOfferEntity(addOfferDTO);
 

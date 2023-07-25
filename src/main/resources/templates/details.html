@@ -27,16 +27,20 @@
             </div>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text">• Mileage <span th:text="*{mileage}"></span></div>
-                    <div class="card-text">• Price <span th:text="*{price}"></span></div>
-                    <div class="card-text">• Engine type <span th:text="*{engine}"></span></div>
-                    <div class="card-text">• Transmission type <span th:text="*{transmission}"></span></div>
-                    <div class="card-text">• Seller <span th:text="*{getSellerFullName()}"></span></div>
+                    <div class="card-text">• Mileage - <span th:text="*{mileage}"></span></div>
+                    <div class="card-text">• Price - <span th:text="*{price}"></span></div>
+                    <div class="card-text">• Engine type - <span th:text="*{engine}"></span></div>
+                    <div class="card-text">• Transmission type - <span th:text="*{transmission}"></span></div>
+                    <div class="card-text">• Seller - <span th:text="*{getSellerFullName()}"></span></div>
                 </li>
             </ul>
             <div class="card-body">
-                <a class="card-link" href="/">Update</a>
-                <a class="card-link" href="/">Delete</a>
+                <form
+                        th:action="@{/offers/{id}(id=*{id})}"
+                        th:method="delete"
+                        >
+                    <input type="submit" value="Delete">
+                </form>
             </div>
         </div>
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">

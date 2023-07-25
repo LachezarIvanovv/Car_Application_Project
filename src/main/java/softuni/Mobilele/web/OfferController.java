@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,9 +97,14 @@ public class OfferController {
         return "offer-search";
     }
 
+    @DeleteMapping("/offers/{id}")
+    public String deleteOffer(@PathVariable("id") Long id){
+        offerService.deleteOfferById(id);
 
+        return "redirect:/offers/all";
+    }
 
-    @GetMapping("/offers/{id}/details")
+    @GetMapping("/offers/{id}")
     public String getOfferDetail(@PathVariable("id") Long id,
                                  Model model){
 
