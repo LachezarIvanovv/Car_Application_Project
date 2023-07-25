@@ -17,7 +17,6 @@ import softuni.Mobilele.model.service.MobileleUserDetailsService;
 import softuni.Mobilele.repository.UserRepository;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     //Here we have to expose 3 things:
