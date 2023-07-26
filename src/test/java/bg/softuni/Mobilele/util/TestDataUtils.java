@@ -9,6 +9,7 @@ import softuni.Mobilele.model.enums.UserRoleEnum;
 import softuni.Mobilele.repository.*;
 
 import java.math.BigDecimal;
+import java.util.stream.Collectors;
 
 @Component
 public class TestDataUtils {
@@ -64,7 +65,11 @@ public class TestDataUtils {
                 .setFirstName("User")
                 .setLastName("Userov")
                 .setActive(true)
-                .setUserRoles(userRoleRepository.findAll());
+                .setUserRoles(userRoleRepository
+                        .findAll()
+                        .stream()
+                        .filter(r -> r.getUserRole() != UserRoleEnum.ADMIN)
+                        .collect(Collectors.toList()));
 
         return userRepository.save(user);
     }
@@ -95,6 +100,7 @@ public class TestDataUtils {
                 .setName("Fiesta")
                 .setBrand(brandEntity)
                 .setCategory(CategoryEnum.CAR)
+                .setImageURL("http://image.com/image.png")
                 .setStartYear(1978);
 
         return modelRepository.save(model);
