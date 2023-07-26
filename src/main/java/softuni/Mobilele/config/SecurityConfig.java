@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import softuni.Mobilele.model.enums.UserRoleEnum;
 import softuni.Mobilele.model.service.MobileleUserDetailsService;
+import softuni.Mobilele.model.service.OauthSuccessHandler;
 import softuni.Mobilele.repository.UserRepository;
 
 @Configuration
@@ -31,7 +32,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           OauthSuccessHandler oauthSuccessHandler) throws Exception {
 
         http.
                 // define which requests are allowed and which not
@@ -70,7 +72,12 @@ public class SecurityConfig {
                         logoutSuccessUrl("/").
                 // invalidate the session and delete the cookies
                         invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                    deleteCookies("JSESSIONID")
+                .and()
+                // allow oauth login
+                .oauth2Login()
+                .loginPage("/users/login")
+                .successHandler(oauthSuccessHandler);
 
 
         return http.build();

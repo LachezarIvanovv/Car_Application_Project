@@ -12,7 +12,9 @@ import softuni.Mobilele.model.entity.UserEntity;
 import softuni.Mobilele.model.mapper.UserMapper;
 import softuni.Mobilele.repository.UserRepository;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -37,6 +39,21 @@ public class UserService {
         this.emailService = emailService;
     }
 
+    public void createUserIfNotExists(String email){
+        var userOpt = this.userRepository.findByEmail(email);
+
+        if(userOpt.isEmpty()){
+            var newUser = new UserEntity()
+                    .setEmail(email)
+                    .setPassword(null)
+                    .setFirstName("New")
+                    .setLastName("User")
+                    .setUserRoles(List.of());
+
+            userRepository.save(newUser);
+        }
+    }
+
     public void registerAndLogin(UserRegisterDTO userRegisterDTO,
                                  Locale preferredLocale) {
         UserEntity newUser = userMapper.userDTOToUserEntity(userRegisterDTO);
@@ -51,7 +68,7 @@ public class UserService {
     }
 
 
-    private void login(String userName){
+    public void login(String userName){
         UserDetails userDetails =
                 userDetailsService.loadUserByUsername(userName);
 
