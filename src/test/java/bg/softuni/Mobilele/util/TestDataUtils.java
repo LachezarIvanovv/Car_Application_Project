@@ -1,7 +1,6 @@
 package bg.softuni.Mobilele.util;
 
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import softuni.Mobilele.model.entity.*;
 import softuni.Mobilele.model.enums.CategoryEnum;
 import softuni.Mobilele.model.enums.EngineEnum;
