@@ -1,12 +1,9 @@
 package softuni.Mobilele.model.service;
 
-import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -26,7 +23,6 @@ public class OauthSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        FilterChain chain,
                                         Authentication authentication) throws IOException, ServletException {
         if(authentication instanceof OAuth2AuthenticationToken oAuth2AuthenticationToken){
             var userEmail = oAuth2AuthenticationToken
@@ -38,6 +34,6 @@ public class OauthSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             userService.login(userEmail);
         }
 
-        super.onAuthenticationSuccess(request, response, chain, authentication);
+        super.onAuthenticationSuccess(request, response, authentication);
     }
 }
