@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.Mobilele.exception.ObjectNotFoundException;
-import softuni.Mobilele.model.dto.AddOfferDTO;
+import softuni.Mobilele.model.dto.CreateOrUpdateOfferDTO;
 import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.service.BrandService;
 import softuni.Mobilele.model.service.OfferService;
@@ -51,7 +51,7 @@ public class OfferController {
     @GetMapping("/offers/add")
     public String addOffer(Model model){
         if(!model.containsAttribute("addOfferModel")){
-            model.addAttribute("addOfferModel", new AddOfferDTO());
+            model.addAttribute("addOfferModel", new CreateOrUpdateOfferDTO());
         }
         model.addAttribute("brands", brandService.getAllBrands());
 
@@ -59,7 +59,7 @@ public class OfferController {
     }
 
     @PostMapping("/offers/add")
-    public String addOffer(@Valid AddOfferDTO addOfferModel,
+    public String addOffer(@Valid CreateOrUpdateOfferDTO addOfferModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
                            @AuthenticationPrincipal UserDetails userDetails){
@@ -98,6 +98,17 @@ public class OfferController {
         }
 
         return "offer-search";
+    }
+
+    @GetMapping("/offers/{id}/edit")
+    public String edit(@PathVariable("id") Long id,
+                       Model model){
+        var offer = offerService.findOfferById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Offer with ID " + id + "not found"));
+
+        model.addAttribute("offer", offer);
+
+        return "details";
     }
 
 //    @PreAuthorize("@offerService.isOwner(#principal.name, #id)")

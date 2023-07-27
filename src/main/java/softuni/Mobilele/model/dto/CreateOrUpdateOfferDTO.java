@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Positive;
 import softuni.Mobilele.model.enums.EngineEnum;
 import softuni.Mobilele.model.enums.TransmissionEnum;
 
-public class AddOfferDTO {
+public class CreateOrUpdateOfferDTO {
 
 
     @NotNull
@@ -43,7 +43,7 @@ public class AddOfferDTO {
         return modelId;
     }
 
-    public AddOfferDTO setModelId(Long modelId) {
+    public CreateOrUpdateOfferDTO setModelId(Long modelId) {
         this.modelId = modelId;
         return this;
     }
@@ -52,7 +52,7 @@ public class AddOfferDTO {
         return engine;
     }
 
-    public AddOfferDTO setEngine(EngineEnum engine) {
+    public CreateOrUpdateOfferDTO setEngine(EngineEnum engine) {
         this.engine = engine;
         return this;
     }
@@ -61,7 +61,7 @@ public class AddOfferDTO {
         return imageUrl;
     }
 
-    public AddOfferDTO setImageUrl(String imageUrl) {
+    public CreateOrUpdateOfferDTO setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -74,7 +74,7 @@ public class AddOfferDTO {
         return price;
     }
 
-    public AddOfferDTO setPrice(Integer price) {
+    public CreateOrUpdateOfferDTO setPrice(Integer price) {
         this.price = price;
         return this;
     }
@@ -83,7 +83,7 @@ public class AddOfferDTO {
         return year;
     }
 
-    public AddOfferDTO setYear(Integer year) {
+    public CreateOrUpdateOfferDTO setYear(Integer year) {
         this.year = year;
         return this;
     }
@@ -92,12 +92,12 @@ public class AddOfferDTO {
         return description;
     }
 
-    public AddOfferDTO setDescription(String description) {
+    public CreateOrUpdateOfferDTO setDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public AddOfferDTO setTransmission(TransmissionEnum transmission) {
+    public CreateOrUpdateOfferDTO setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -106,7 +106,7 @@ public class AddOfferDTO {
         return mileage;
     }
 
-    public AddOfferDTO setMileage(Integer mileage) {
+    public CreateOrUpdateOfferDTO setMileage(Integer mileage) {
         this.mileage = mileage;
         return this;
     }

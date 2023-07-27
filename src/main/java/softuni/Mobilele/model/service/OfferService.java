@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import softuni.Mobilele.model.dto.AddOfferDTO;
+import softuni.Mobilele.model.dto.CreateOrUpdateOfferDTO;
 import softuni.Mobilele.model.dto.OfferDetailDTO;
 import softuni.Mobilele.model.dto.SearchOfferDTO;
 import softuni.Mobilele.model.entity.ModelEntity;
@@ -64,21 +64,26 @@ public class OfferService {
         offerRepository.deleteById(offerId);
     }
 
-    public void addOffer(AddOfferDTO addOfferDTO, UserDetails userDetails){
-        OfferEntity newOffer = offerMapper.addOfferDtoToOfferEntity(addOfferDTO);
+    public void addOffer(CreateOrUpdateOfferDTO createOrUpdateOfferDTO, UserDetails userDetails){
+        OfferEntity newOffer = offerMapper.createOrUpdateOfferDtoToOfferEntity(createOrUpdateOfferDTO);
 
         UserEntity seller = userRepository
                 .findByEmail(userDetails.getUsername())
                 .orElseThrow();
 
         ModelEntity model = modelRepository
-                .findById(addOfferDTO.getModelId())
+                .findById(createOrUpdateOfferDTO.getModelId())
                 .orElseThrow();
 
         newOffer.setModel(model);
         newOffer.setSeller(seller);
 
         offerRepository.save(newOffer);
+    }
+
+    public Optional<CreateOrUpdateOfferDTO> getOfferEditDetails(Long offerId){
+        return offerRepository.findById(offerId)
+                .map(offerMapper::offerEntityToCreateOrUpdateOfferDtoTo);
     }
 
     public Page<OfferDetailDTO> getAllOffers(Pageable pageable){
