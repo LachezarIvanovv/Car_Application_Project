@@ -100,9 +100,10 @@ class OfferControllerIT {
                 .andExpect(status().isForbidden());
     }
 
-    @WithUserDetails("user@example.com")
+    @WithUserDetails(value = "user@example.com",
+                    userDetailsServiceBeanName = "testUserDataService")
     @Test
-    void testAddOffer() throws Exception {
+     void testAddOffer() throws Exception {
 
         mockMvc.perform(post("/offers/add")
                         .param("modelId", "1")
@@ -111,10 +112,11 @@ class OfferControllerIT {
                         .param("year", "1979")
                         .param("mileage", "1000")
                         .param("description", "test")
+                        .param("transmission", "MANUAL")
                         .param("imageUrl", "image://test.png")
                         .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(redirectedUrl("/offers/all"));
     }
 }

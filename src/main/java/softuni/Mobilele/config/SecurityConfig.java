@@ -4,6 +4,7 @@ package softuni.Mobilele.config;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -87,6 +88,7 @@ public class SecurityConfig {
     }
 
 
+    @Primary
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository){
         return new MobileleUserDetailsService(userRepository);
