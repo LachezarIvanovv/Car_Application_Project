@@ -1,4 +1,4 @@
-﻿package softuni.Mobilele.model.service;
+package softuni.Mobilele.model.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

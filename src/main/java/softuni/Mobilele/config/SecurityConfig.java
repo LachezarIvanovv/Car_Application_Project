@@ -45,6 +45,7 @@ public class SecurityConfig {
                         requestMatchers("/", "/users/login", "/users/register", "/offers/**",
                         "/search").permitAll().
                         requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
+                        requestMatchers("/offers/add").authenticated().
                 // pages available only for moderators
 //                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
                 // pages available only for admins
