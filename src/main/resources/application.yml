@@ -44,3 +44,10 @@ mail:
   port: 1025
   username: "mobilele@mobilele.com"
   password: "topsecret"
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"

@@ -1,6 +1,7 @@
 package softuni.Mobilele.config;
 
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
@@ -43,6 +44,7 @@ public class SecurityConfig {
                 // everyone can log in and register
                         requestMatchers("/", "/users/login", "/users/register", "/offers/**",
                         "/search").permitAll().
+                        requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll().
                 // pages available only for moderators
 //                        requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
                 // pages available only for admins
